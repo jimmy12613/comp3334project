@@ -1,6 +1,6 @@
 <?php
     ob_start();
-    123
+    
 	$conn = @mysqli_connect("localhost","root","","comp3334");
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " . mysqli_connect_error());

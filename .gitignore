@@ -1,7 +1,0 @@
-git init
-git add .
-git commit -am "test"
-git push -u origin main
-git log
-git remote add origin https://github.com/jimmy12613/xxxx.git
-git pull origin main

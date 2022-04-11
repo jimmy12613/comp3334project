@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <link rel="stylesheet" type="text/css" href="register.css">
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="logo">NFT Market</div>
+            <div>
+                <a href="index1.php">Market</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Log In/Sign In 
+                    <div class="dropdown-content">
+                        <a href="login.html">Log In</a>
+                        <a href="register.html">Sign In</a>
+                    </div>
+                    </button>
+                
+                </div> 
+            </div>
+        </div>
+
+        <div class="new-account">
+            <h2 style="color:#597AAD; font-size:2.5em; font-weight:normal; font-family:'Oswald' ">Create New Account</h2><br>
+
+            <div class="new-form">
+                <form action="register.php" method ="POST">
+                    <label>First Name</label><br>
+                    <input type="text" name ="fn" required><br>
+                    <label>Last Name</label><br>
+                    <input type="text" name ="ln" required><br>
+                    <label>Email</label><br>
+                    <input type="email" name ="email" required><br><br>
+                    <label>Enter Password (at least 8 characters, a lowercase, an uppercase and a number)</label><br>
+                    <input type="password" name ="psw" id="psw"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    required><br>
+                    <label id="showPsw"><input type="checkbox" name="show-password" onclick="showPassword('psw')"> show </label><br><br>
+                    <label>Confirm Password</label>
+                    <input type="password" name ="psw2" id="psw2" required><br>
+                    <label id="showPsw"><input type="checkbox" name="show-password" onclick="showPassword('psw2')"> show </label><br>
+
+                    <div class="submit-button">
+                        <input type="submit" value="Submit">
+                    </div>
+
+
+                    
+
+                </form>
+            </div>
+        </div>
+        <script src="register.js"></script>
+    </body> 
+</html>

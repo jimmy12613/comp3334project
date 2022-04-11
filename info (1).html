@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <link rel="stylesheet" type="text/css" href="info.css">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css"> 
+    </head>
+        <body>
+            <div class="navbar">
+                <div class="logo">NFT Market</div>
+                <div>
+                    <a href="index2.php">Market</a>
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                        <i class="far fa-user-circle fa-lg"></i>User
+                            <div class="dropdown-content">
+                                <a href="#account">View Account</a>
+                                <a href="#wallet">Wallet</a>
+                                <a href="#upload">Upload</a>
+                                <a href="logout.php">Log out</a>
+                            </div>
+                        </button>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="info-wrapper">
+                <div class="info">
+                    <div class="info-header">
+                        <h2 style="padding-left: 20px;">Personal Info</h2>
+                        <hr class="solid">
+                    </div>
+                    <div class="info-person">
+                        <h3>Hello, </h3>
+                        <!--Fetch user's first name from database-->
+                        <h3>First Name</h3>
+
+                        <ul>
+                            <li>Email: (email@email.com)</li>
+                            <li>Password: ********<br>
+                                <a href="#changePassword">Change Password</a>
+                            </li>
+                            <li>Balance: $(balance)<br>
+                                <a href="wallet.html">Top Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info-art">
+                        <div class="info-art-header">
+                            <div>
+                                <h3>Your Art</h3>
+                            </div>
+                            <div class="upload-button">
+                                <input type="button" onclick="location.href='#upload';" value="Upload">
+                            </div>
+                        </div>
+
+                        <div class="user-art">
+                            <!-- This is the new code with modal box
+                                start with the below div
+                                -->                           
+                            <div>
+                                <button class ="art" style="background-image: url(p1.jpg)"></button>
+                                <div id="Modal" class="modal">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-content-art" style="background-image: url(p1.jpg)"> </div>
+                                        <div class="modal-content-detail">
+                                            <h2>Art Name</h2><!--From database Art Name-->
+                                            <h2>#</h2> 
+                                            <h2>ID</h2><!--From Database Art ID-->
+                                            <br>
+                                            <p>
+                                                Art Description: Lorem ipsum dolor sit amet, 
+                                                consectetur adipiscing elit. Sed fringilla volutpat consequat. 
+                                                Etiam sed nibh imperdiet, tincidunt justo a, consequat mi. 
+                                                Pellentesque habitant morbi tristique senectus et netus et 
+                                                malesuada fames ac turpis egestas. Proin vitae ullamcorper 
+                                                augue, ac ullamcorper sapien. Nunc convallis tincidunt erat 
+                                                ut scelerisque. Aliquam pellentesque pulvinar.
+                                            </p>
+                                            
+
+                                            <form action='' method ='POST' >
+                                                <input type ='hidden' name ='filename' value ='{$row["file_name"]}' readonly>
+                                                <input type ='submit' name ='dl' value ='Download Original'>
+                                            </form>
+
+                                            <div class="sell-info">
+                                                <h4>Sell Infomation</h4>
+                                                <form> 
+                                                    <div class="pt1">
+                                                        <input type="checkbox">
+                                                        <label>For Sale</label><br><br>
+                                                        <label>Price:</label>
+                                                        <input type="number" value=""><br>
+                                                    </div>
+                                                    <button type="button" class="collapse">Confirm</button>
+                                                    <div class="pt2">
+                                                        <label>Password:</label>
+                                                        <input type="password" class="pwd"><br>
+                                                        <input type="submit" id="sell-submit" value="Enter" >
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                    
+
+                                        </div>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--This is the end of div-->
+                            
+                            <!--This is the second div for reference-->
+                            <div>
+                                <button class ="art" style="background-image: url(p3.jpg)"></button>
+                                <div id="Modal" class="modal">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-content-art" style="background-image: url(p3.jpg)"> </div>
+                                        <div class="modal-content-detail">
+                                            <h2>Art Name</h2><!--From database Art Name-->
+                                            <h2>#</h2> 
+                                            <h2>ID</h2><!--From Database Art ID-->
+                                            <br>
+                                            <p>
+                                                Art Description: Lorem ipsum dolor sit amet, 
+                                                consectetur adipiscing elit. Sed fringilla volutpat consequat. 
+                                                Etiam sed nibh imperdiet, tincidunt justo a, consequat mi. 
+                                                Pellentesque habitant morbi tristique senectus et netus et 
+                                                malesuada fames ac turpis egestas. Proin vitae ullamcorper 
+                                                augue, ac ullamcorper sapien. Nunc convallis tincidunt erat 
+                                                ut scelerisque. Aliquam pellentesque pulvinar.
+                                            </p>
+                                            
+
+                                            <form action='' method ='POST' >
+                                                <input type ='hidden' name ='filename' value ='{$row["file_name"]}' readonly>
+                                                <input type ='submit' name ='dl' value ='Download Original'>
+                                            </form>
+
+                                            <div class="sell-info">
+                                                <h4>Sell Infomation</h4>
+                                                <form> 
+                                                    <div class="pt1">
+                                                        <input type="checkbox">
+                                                        <label>For Sale</label><br><br>
+                                                        <label>Price:</label>
+                                                        <input type="number" value=""><br>
+                                                    </div>
+                                                    <button type="button" class="collapse">Confirm</button>
+                                                    <div class="pt2">
+                                                        <label>Password:</label>
+                                                        <input type="password" class="pwd"><br>
+                                                        <input type="submit" id="sell-submit" value="Enter" >
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                    
+
+                                        </div>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--This is the end-->
+                            
+
+                        
+                            
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+           <script src="info.js"></script>
+        
+        </body>
+</html>

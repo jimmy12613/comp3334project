@@ -27,21 +27,10 @@
 	$hash = xor_string($_POST['psw'],$salt);
 	$psw = hash('sha256',$hash);			#hash
 	
-	//Get Heroku ClearDB connection information
-    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server = $cleardb_url["host"];
-    $cleardb_username = $cleardb_url["user"];
-    $cleardb_password = $cleardb_url["pass"];
-    $cleardb_db = substr($cleardb_url["path"],1);
-
-    $active_group = 'default';
-    $query_builder = TRUE;
-    
-	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-	
+	$conn = @mysqli_connect("localhost","root","","comp3334");
 	if (mysqli_connect_errno()) {
-	die("Failed to connect to MySQL: " . mysqli_connect_error());}
-	
+		die("Failed to connect to MySQL: " . mysqli_connect_error());
+	}
 	#check duplicate email
 	$email_sql = "SELECT * From user WHERE email='{$email}'";
 	$result = mysqli_query($conn, $email_sql);

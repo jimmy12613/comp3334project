@@ -4,18 +4,7 @@
 	$uid =$_SESSION['uid'];
 ?>
 <?php
-	//Get Heroku ClearDB connection information
-    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server = $cleardb_url["host"];
-    $cleardb_username = $cleardb_url["user"];
-    $cleardb_password = $cleardb_url["pass"];
-    $cleardb_db = substr($cleardb_url["path"],1);
-
-    $active_group = 'default';
-    $query_builder = TRUE;
-    
-	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-
+	$conn = @mysqli_connect("localhost","root","","comp3334");
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " . mysqli_connect_error());
 	}
@@ -50,12 +39,7 @@
 
 ?>
 <?php
-			
-	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-	if (mysqli_connect_errno()) {
-		die("Failed to connect to MySQL: " . mysqli_connect_error());
-	}
-	
+
 	$sql = "Select * from user where uid='{$uid}'";
 	$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -64,7 +48,7 @@
 	$email =$row['email'];
 	$money =$row['money'];
 	
-	$sql ="SELECT * FROM artwork where uid ='{$uid}'";
+	$sql ="SELECT * FROM artwork where uid ='{$uid}' and approve ='accepted'";
 	$div ="";
 	$result = mysqli_query($conn, $sql);
 	
@@ -75,95 +59,51 @@
 		$aid = $row['aid'];
 		$price = $row['price'];
 		$desc = $row['description'];
-		if ( $row['sale'] == 1 ) {
-			$div .= '<div>
-					<button class ="art" style="background-image: url('.$file.')"></button>
-					<div id="Modal" class="modal">
-						<div class="modal-content">
-                                        
-							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
-							<div class="modal-content-detail">
-								<h2>'.$name.'</h2>
-								<h2>#</h2> 
-								<h2>'.$aid.'</h2>
-								<br>
-								<p>'.$desc.'</p>
-								<form action="" method ="POST" >
-									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
-									<input type ="submit" value ="Download Original">
-								</form>
-
-								<div class="sell-info">
-									<h4>Sell Infomation</h4>
-									<form action "" method ="POST"> 
-										<div class="pt1">
-											<input type ="hidden" value ="'.$aid.'" name ="aid">
-											<input type ="hidden" name ="sale" value =0>
-											<input type="checkbox" name ="sale" value = 1 checked>
-											<label>For Sale</label><br><br>
-											<label>Price:</label>
-											<input type="number" value="'.$price.'" name ="new_price"><br>
-										</div>
-										<button type="button" class="collapse">Confirm</button>
-										<div class="pt2">
-											<label>Password:</label>
-											<input type="password" class="pwd" name ="psw"><br>
-											<input type="submit" id="sell-submit" value="Enter" >
-										</div>
-									</form>
-								</div>
-
-							</div>
-							<span class="close">&times;</span>
-						</div>
-					</div>
-				</div>';
-		}else {
-			$div .= '<div>
-					<button class ="art" style="background-image: url('.$file.')"></button>
-					<div id="Modal" class="modal">
-						<div class="modal-content">
-                                        
-							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
-							<div class="modal-content-detail">
-								<h2>'.$name.'</h2>
-								<h2>#</h2> 
-								<h2>'.$aid.'</h2>
-								<br>
-								<p>'.$desc.'</p>
-								<form action="" method ="POST" >
-									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
-									<input type ="submit" value ="Download Original">
-								</form>
-
-								<div class="sell-info">
-									<h4>Sell Infomation</h4>
-									<form action "" method ="POST"> 
-										<div class="pt1">
-											<input type ="hidden" value ="'.$aid.'" name ="aid">
-											<input type ="hidden" name ="sale" value =0>
-											<input type="checkbox" name ="sale" value = 1>
-											<label>For Sale</label><br><br>
-											<label>Price:</label>
-											<input type="number" value="'.$price.'" name ="new_price"><br>
-										</div>
-										<button type="button" class="collapse">Confirm</button>
-										<div class="pt2">
-											<label>Password:</label>
-											<input type="password" class="pwd" name ="psw"><br>
-											<input type="submit" id="sell-submit" value="Enter" >
-										</div>
-									</form>
-								</div>
-
-							</div>
-							<span class="close">&times;</span>
-						</div>
-					</div>
-				</div>';
-		}
-
+		
+		if ($row['sale'] ==1){$check ="checked =1";} else {$check ="";}
 		#echo $file."<br>";
+		$div .= '<div>
+					<button class ="art" style="background-image: url('.$file.')"></button>
+					<div id="Modal" class="modal">
+						<div class="modal-content">
+                                        
+							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
+							<div class="modal-content-detail">
+								<h2>'.$name.'</h2>
+								<h2>#</h2> 
+								<h2>'.$aid.'</h2>
+								<br>
+								<p>'.$desc.'</p>
+								<form action="" method ="POST" >
+									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
+									<input type ="submit" value ="Download Original">
+								</form>
+
+								<div class="sell-info">
+									<h4>Sell Infomation</h4>
+									<form action "" method ="POST"> 
+										<div class="pt1">
+											<input type ="hidden" value ="'.$aid.'" name ="aid">
+											<input type ="hidden" name ="sale" value =0>
+											<input type="checkbox" name ="sale" value =1 '.$check.'">
+											<label>For Sale</label><br><br>
+											<label>Price:</label>
+											<input type="number" value="'.$price.'" name ="new_price"><br>
+										</div>
+										<button type="button" class="collapse">Confirm</button>
+										<div class="pt2">
+											<label>Password:</label>
+											<input type="password" class="pwd" name ="psw"><br>
+											<input type="submit" id="sell-submit" value="Enter" >
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<span class="close">&times;</span>
+						</div>
+					</div>
+				</div>';
 		
 	}
 	
@@ -190,24 +130,20 @@
                             <div class="dropdown-content">
                                 <a href="info.php">View Account</a>
 								<?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
-                        $sql = "Select * from user where uid='{$uid}'";
-                        $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        if ($row['email_validate'] == $row['email_validated']) {
-                            echo'
-                            	<a href="wallet.php">Wallet</a>
-                            	<a href="upload.php">Upload</a>
-                            ';
-                        }else {
-							echo'
-								<a href="validation.php">Validation</a>
-                            ';
-						}
-                    ?>
+									$sql = "Select * from user where uid='{$uid}'";
+									$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
+									$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+									if ($row['email_validate'] == $row['email_validated']) {
+										echo'
+											<a href="wallet.php">Wallet</a>
+											<a href="upload.php">Upload</a>
+											';
+									}else {
+										echo'
+											<a href="validation.php">Validation</a>
+										';
+									}				
+								?>
                                 <a href="logout.php">Log out</a>
                             </div>
                         </button>
@@ -233,19 +169,16 @@
                             </li>
                             <li>Balance: $<?php echo $money; ?><br>
 							<?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
-                        $sql = "Select * from user where uid='{$uid}'";
-                        $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        if ($row['email_validate'] == $row['email_validated']) {
-                            echo'
-                            <a href="wallet.php">Top Up</a>
-                            ';
-                        }
-                    ?>
+
+								$sql = "Select * from user where uid='{$uid}'";
+								$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
+								$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+								if ($row['email_validate'] == $row['email_validated']) {
+									echo'
+									<a href="wallet.php">Top Up</a>
+									';
+								}
+							?>
                             </li>
                         </ul>
                     </div>
@@ -255,21 +188,16 @@
                                 <h3>Your Art</h3>
                             </div>
 							<?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
-                        $sql = "Select * from user where uid='{$uid}'";
-                        $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        if ($row['email_validate'] == $row['email_validated']) {
-                            echo'
-							<div class="upload-button">
-							<input type="button" onclick="location.href=\'upload.php\';" value="Upload">
-						</div>
-                            ';
-                        }
-                    ?>
+								$sql = "Select * from user where uid='{$uid}'";
+								$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
+								$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+								if ($row['email_validate'] == $row['email_validated']) {
+									echo'
+										<div class="upload-button">
+										<input type="button" onclick="location.href=\'upload.php\';" value="Upload">
+										</div>';
+								}
+							?>
                         </div>
 
                         <div class="user-art">

@@ -1,0 +1,110 @@
+h2{
+    color:#597AAD; 
+    font-size:2.5em; 
+    font-weight:normal; 
+    font-family:'Oswald'
+}
+.artUpload{
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:3%;
+    
+}
+.form-control{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#file-upload{
+    display: none;
+}
+label{
+    color:#597AAD;
+    margin-bottom: 10px;
+    font-size: 20px;
+
+}
+.custom-file-upload{
+    background-color: #597AAD;
+    color:#fff;
+    display: inline-block;
+    padding: 6px;
+    width:50%;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#preview{
+    max-height:500px;
+    padding-bottom:50px;
+}
+
+textarea{
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 2px solid #BFCEE4;
+    border-radius: 4px;
+    resize: none;
+    font-family: Helvetica, Arial, sans-serif;
+
+}
+
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+
+hr{
+    border-top: 2px dotted #BFCEE4;
+    width:80%;
+}
+
+h3{
+    color:#597AAD;
+    font-weight: normal;
+    font-size: 25px;
+}
+
+.spacer{
+    margin-bottom:5%;
+}
+input[type="text"], input[type="number"]{
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 2px solid #BFCEE4;
+    border-radius: 8px;
+}
+input[type="text"]{
+    width:40%;
+}
+
+input[type=submit]{
+    display: block;
+    font-size:1.5em;
+    color:#fff;
+    background-color: #597AAD;
+    margin-top: 50px;
+    margin-right:auto;
+    margin-left:auto;
+    border-radius: 10px;
+    width:50%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    border:0;
+    padding: 12px 20px;
+}
+
+input[type=submit]:hover{
+    background-color: #BFCEE4;
+}
+input[type=submit]:active{
+    box-shadow: 0 0 0 ;
+}
+
+.required::after{
+    content:" *";
+    color: red;
+}

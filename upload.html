@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <link rel="stylesheet" type="text/css" href="upload.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css"> 
+    </head>
+    <body>   
+		<div class="navbar">
+            <div class="logo">NFT Market</div>
+            <div>
+				<a href="index2.php">Market</a>
+				<div class="dropdown">
+					<button class="dropbtn">
+					<i class="far fa-user-circle fa-lg"></i>User
+						<div class="dropdown-content">
+							<a href="info.php">View Account</a>
+							<a href="wallet.php">Wallet</a>
+							<a href="upload.php">Upload</a>
+							<a href="logout.php">Log out</a>
+						</div>
+					</button>
+				</div> 
+			</div>
+		</div>
+        <h2 class="text-center">Upload New Art</h2>
+		
+			<form method ="POST" class="text-left">
+                <div class="artUpload">
+                    <div class="form-control text-center">
+                        <img id="preview"><br>
+                        <label for="file-upload" class="custom-file-upload ">Browse File</label>
+                        <input type ="file" name ="art" id="file-upload" accept="image/*" onchange="loadFile(event)"required >
+                    </div>
+                    <div class="form-control ">
+                        <label for="art-name" class="required">Art Name:</label>
+                        <input type="text" name="name" id="art-name" required>
+                    </div>
+                    <div class="form-control ">
+                        <label for="art-descr">Description:</label><br><br>
+                        <textarea name="desc" id="art-descr" placeholder="Description of your art..."></textarea>
+                    </div>
+                    <div class="form-control">
+                        <input type ="hidden" value =0 name ="sale">
+                        <input type ="checkbox" value =1 name ="sale" id="art-sale">
+                        <label for="art-sale">For sale</label>
+                    </div>
+                    <div class="form-control">
+                        <label for="art-price"> Price ($) : </label>
+                        <input type ="number" name ="price" id="art-price" min="0" value="0">
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="artUpload">
+                    <h3>Justifaction of ownership</h3>
+                    <p>Please provide a <strong>PDF</strong> file including your justification. 
+                        <br>Your file could include images, description or video link to prove your ownership. Upload without appropriate justification of ownership will not be accepted. </p>
+
+                    <div class="form-control ">
+                        <input type ="file" accept=".pdf" class="required" required>
+                    </div>
+
+                    <input type="submit" value="Submit" name ="submit" class="spacer"><br>
+                    
+                </div>          
+					
+				
+			</form>
+			
+            <script src="upload.js"></script>
+    </body> 
+</html>

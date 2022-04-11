@@ -6,18 +6,7 @@
 
 <?php
 			
-	//Get Heroku ClearDB connection information
-    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server = $cleardb_url["host"];
-    $cleardb_username = $cleardb_url["user"];
-    $cleardb_password = $cleardb_url["pass"];
-    $cleardb_db = substr($cleardb_url["path"],1);
-
-    $active_group = 'default';
-    $query_builder = TRUE;
-    
-	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-
+	$conn = @mysqli_connect("localhost","root","","comp3334");
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " . mysqli_connect_error());
 	}
@@ -52,20 +41,17 @@
                             <div class="dropdown-content">
                                 <a href="info.php">View Account</a>
                                 <?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
-                        $sql = "Select * from user where uid='{$uid}'";
-                        $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        if ($row['email_validate'] == $row['email_validated']) {
-                            echo'
-                            	<a href="wallet.php">Wallet</a>
-                            	<a href="upload.php">Upload</a>
-                            ';
-                        }
-                    ?>
+
+									$sql = "Select * from user where uid='{$uid}'";
+									$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
+									$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+									if ($row['email_validate'] == $row['email_validated']) {
+										echo'
+										<a href="wallet.php">Wallet</a>
+										<a href="upload.php">Upload</a>
+										';
+									}
+								?>
                                 <a href="validation.php">Validation</a>
                                 <a href="logout.php">Log out</a>
                                 
@@ -93,50 +79,44 @@
                             </li>
                             <li>Balance: $<?php echo $money; ?><br>
                             <?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
-                        $sql = "Select * from user where uid='{$uid}'";
-                        $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        if ($row['email_validate'] == $row['email_validated']) {
-                            echo'
-                            <a href="wallet.php">Top Up</a>
-                            ';
-                        }
-                    ?>
+
+								$sql = "Select * from user where uid='{$uid}'";
+								$result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
+								$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+								if ($row['email_validate'] == $row['email_validated']) {
+									echo'
+									<a href="wallet.php">Top Up</a>
+									';
+								}
+							?>
                                 
                             </li>
                         </ul>
                     </div>
                     <?php
-                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-                        if (mysqli_connect_errno()) {
-                            die("Failed to connect to MySQL: " . mysqli_connect_error());
-                        }
+
                         $sql = "Select * from user where uid='{$uid}'";
                         $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                         if ($row['email_validate'] != $row['email_validated']) {
                             echo '
                             <div class="info-art">
-                            <div class="info-art-header">
-                                <div>
-                                    <h3>Validation</h3>
-                                </div>
-                            </div>
+								<div class="info-art-header">
+									<div>
+										<h3>Validation</h3>
+									</div>
+								</div>
     
-                            <div class="validation">
-                                <form action="validation2.php" method ="POST">
-                                    <label>Please enter the 6-digits number</label><br><br>
-                                    <input type="text" name ="valid" id="valid" required><p></p>
-                                    <div class="submit-button">
-                                        <button value="submit">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+								<div class="validation">
+									<form action="validation2.php" method ="POST">
+										<label>Please enter the 6-digits number</label><br><br>
+										<input type="text" name ="valid" id="valid" required><p></p>
+										<div class="submit-button">
+											<button value="submit">Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
                             ';
                         }else{
                             echo'

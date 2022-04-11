@@ -102,6 +102,14 @@
 ?>
 <!DOCTYPE html>
 <html>
+	<head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="nav.css">
+        <link rel="stylesheet" type="text/css" href="upload.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css"> 
+    </head>
     <body>   
 		<div class="navbar">
             <div class="logo">NFT Market</div>

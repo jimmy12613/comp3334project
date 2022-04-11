@@ -14,7 +14,7 @@
     $query_builder = TRUE;
     
 	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-	
+
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " . mysqli_connect_error());
 	}
@@ -38,7 +38,11 @@
 		if (($row['email'] == $email) and ($row['psw'] == $psw)){		
 			$_SESSION['uid'] =$row['uid'];
 			$_SESSION['ln'] =$row['last_name'];
-			
+
+			if ($row['admin'] == 1) {
+				header("refresh:0; url=admin.php");
+			}
+
 			header("refresh:0; url=index2.php");
 			
 		}else{

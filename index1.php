@@ -16,7 +16,7 @@
 		die("Failed to connect to MySQL: " . mysqli_connect_error());
 	}
 
-    $sql ="SELECT * FROM artwork where approve =true";
+    $sql ="SELECT * FROM artwork where approve ='accepted'";
 
     $div ="";
     $result = mysqli_query($conn, $sql);

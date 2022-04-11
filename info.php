@@ -64,7 +64,7 @@
 	$email =$row['email'];
 	$money =$row['money'];
 	
-	$sql ="SELECT * FROM artwork where uid ='{$uid}' and approve =true";
+	$sql ="SELECT * FROM artwork where uid ='{$uid}' and approve ='accepted'";
 	$div ="";
 	$result = mysqli_query($conn, $sql);
 	

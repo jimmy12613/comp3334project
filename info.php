@@ -202,9 +202,12 @@
                             	<a href="wallet.php">Wallet</a>
                             	<a href="upload.php">Upload</a>
                             ';
-                        }
-                    ?>
+                        }else {
+							echo'
 								<a href="validation.php">Validation</a>
+                            ';
+						}
+                    ?>
                                 <a href="logout.php">Log out</a>
                             </div>
                         </button>

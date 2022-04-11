@@ -41,7 +41,7 @@
 
 	session_start();
 	$uid =$_SESSION['uid'];
-	$conn = @mysqli_connect("localhost","root","","comp3334");
+	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 		if (mysqli_connect_errno()) {
 			die("Failed to connect to MySQL: " . mysqli_connect_error());
 		}

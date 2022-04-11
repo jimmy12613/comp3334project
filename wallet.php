@@ -74,7 +74,7 @@
                         <div class="dropdown-content">
                             <a href="info.php">View Account</a>
                             <a href="wallet.php">Wallet</a>
-                            <a href="#upload">Upload</a>
+                            <a href="upload.php">Upload</a>
                             <a href="logout.php">Log out</a>
                         </div>
                     </button>

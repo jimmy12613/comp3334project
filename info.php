@@ -64,7 +64,7 @@
 	$email =$row['email'];
 	$money =$row['money'];
 	
-	$sql ="SELECT * FROM artwork where uid ='{$uid}'";
+	$sql ="SELECT * FROM artwork where uid ='{$uid}' and approve =true";
 	$div ="";
 	$result = mysqli_query($conn, $sql);
 	
@@ -75,95 +75,51 @@
 		$aid = $row['aid'];
 		$price = $row['price'];
 		$desc = $row['description'];
-		if ( $row['sale'] == 1 ) {
-			$div .= '<div>
-					<button class ="art" style="background-image: url('.$file.')"></button>
-					<div id="Modal" class="modal">
-						<div class="modal-content">
-                                        
-							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
-							<div class="modal-content-detail">
-								<h2>'.$name.'</h2>
-								<h2>#</h2> 
-								<h2>'.$aid.'</h2>
-								<br>
-								<p>'.$desc.'</p>
-								<form action="" method ="POST" >
-									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
-									<input type ="submit" value ="Download Original">
-								</form>
-
-								<div class="sell-info">
-									<h4>Sell Infomation</h4>
-									<form action "" method ="POST"> 
-										<div class="pt1">
-											<input type ="hidden" value ="'.$aid.'" name ="aid">
-											<input type ="hidden" name ="sale" value =0>
-											<input type="checkbox" name ="sale" value = 1 checked>
-											<label>For Sale</label><br><br>
-											<label>Price:</label>
-											<input type="number" value="'.$price.'" name ="new_price"><br>
-										</div>
-										<button type="button" class="collapse">Confirm</button>
-										<div class="pt2">
-											<label>Password:</label>
-											<input type="password" class="pwd" name ="psw"><br>
-											<input type="submit" id="sell-submit" value="Enter" >
-										</div>
-									</form>
-								</div>
-
-							</div>
-							<span class="close">&times;</span>
-						</div>
-					</div>
-				</div>';
-		}else {
-			$div .= '<div>
-					<button class ="art" style="background-image: url('.$file.')"></button>
-					<div id="Modal" class="modal">
-						<div class="modal-content">
-                                        
-							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
-							<div class="modal-content-detail">
-								<h2>'.$name.'</h2>
-								<h2>#</h2> 
-								<h2>'.$aid.'</h2>
-								<br>
-								<p>'.$desc.'</p>
-								<form action="" method ="POST" >
-									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
-									<input type ="submit" value ="Download Original">
-								</form>
-
-								<div class="sell-info">
-									<h4>Sell Infomation</h4>
-									<form action "" method ="POST"> 
-										<div class="pt1">
-											<input type ="hidden" value ="'.$aid.'" name ="aid">
-											<input type ="hidden" name ="sale" value =0>
-											<input type="checkbox" name ="sale" value = 1>
-											<label>For Sale</label><br><br>
-											<label>Price:</label>
-											<input type="number" value="'.$price.'" name ="new_price"><br>
-										</div>
-										<button type="button" class="collapse">Confirm</button>
-										<div class="pt2">
-											<label>Password:</label>
-											<input type="password" class="pwd" name ="psw"><br>
-											<input type="submit" id="sell-submit" value="Enter" >
-										</div>
-									</form>
-								</div>
-
-							</div>
-							<span class="close">&times;</span>
-						</div>
-					</div>
-				</div>';
-		}
-
+		
+		if ($row['sale'] ==1){$check ="checked =1";} else {$check ="";}
 		#echo $file."<br>";
+		$div .= '<div>
+					<button class ="art" style="background-image: url('.$file.')"></button>
+					<div id="Modal" class="modal">
+						<div class="modal-content">
+                                        
+							<div class="modal-content-art" style="background-image: url('.$file.')"> </div>
+							<div class="modal-content-detail">
+								<h2>'.$name.'</h2>
+								<h2>#</h2> 
+								<h2>'.$aid.'</h2>
+								<br>
+								<p>'.$desc.'</p>
+								<form action="" method ="POST" >
+									<input type ="hidden" name ="filename" value ="'.$row["file_name"].'" readonly>
+									<input type ="submit" value ="Download Original">
+								</form>
+
+								<div class="sell-info">
+									<h4>Sell Infomation</h4>
+									<form action "" method ="POST"> 
+										<div class="pt1">
+											<input type ="hidden" value ="'.$aid.'" name ="aid">
+											<input type ="hidden" name ="sale" value =0>
+											<input type="checkbox" name ="sale" value =1 '.$check.'">
+											<label>For Sale</label><br><br>
+											<label>Price:</label>
+											<input type="number" value="'.$price.'" name ="new_price"><br>
+										</div>
+										<button type="button" class="collapse">Confirm</button>
+										<div class="pt2">
+											<label>Password:</label>
+											<input type="password" class="pwd" name ="psw"><br>
+											<input type="submit" id="sell-submit" value="Enter" >
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<span class="close">&times;</span>
+						</div>
+					</div>
+				</div>';
 		
 	}
 	

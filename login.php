@@ -40,10 +40,12 @@
 			$_SESSION['ln'] =$row['last_name'];
 
 			if ($row['admin'] == 1) {
+
 				header("refresh:0; url=admin.php");
+
 			}
 
-			header("refresh:0; url=index2.php");
+			header("refresh:1; url=index2.php");
 			
 		}else{
 			echo '

@@ -33,7 +33,7 @@
     if (isset($_SESSION['uid'])) {
     
         if($_SESSION['uid'] != null) {
-            
+
             $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
             if (mysqli_connect_errno()) { die("Failed to connect to MySQL: " . mysqli_connect_error());}
             $sql = "Select * from user where uid='{$uid}'";
@@ -61,7 +61,6 @@
                                         <a href="info.php">View Account</a>
                                         <a href="wallet.php">Wallet</a>
                                         <a href="upload.php">Upload</a>
-                                        <a href="validation.php">Validation</a>
                                         <a href="logout.php">Log out</a>
                                     </div>
                                 </button>

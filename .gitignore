@@ -1,3 +1,4 @@
+git init
 git add .
 git commit -am "test"
 git push -u origin main

@@ -33,7 +33,8 @@
     if (isset($_SESSION['uid'])) {
     
         if($_SESSION['uid'] != null) {
-            $conn = @mysqli_connect("localhost","root","","comp3334");
+            
+            $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
             if (mysqli_connect_errno()) { die("Failed to connect to MySQL: " . mysqli_connect_error());}
             $sql = "Select * from user where uid='{$uid}'";
             $result = mysqli_query($conn, $sql) or die("Failed to query database".mysqli_error($conn));

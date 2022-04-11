@@ -17,7 +17,7 @@
     $query_builder = TRUE;
     
 	$conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-    
+
 	if (mysqli_connect_errno()) {
 		die("Failed to connect to MySQL: " . mysqli_connect_error());
 	}
@@ -52,7 +52,7 @@
                             <div class="dropdown-content">
                                 <a href="info.php">View Account</a>
                                 <?php
-                        $conn = @mysqli_connect("localhost","root","","comp3334");
+                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                         if (mysqli_connect_errno()) {
                             die("Failed to connect to MySQL: " . mysqli_connect_error());
                         }
@@ -93,7 +93,7 @@
                             </li>
                             <li>Balance: $<?php echo $money; ?><br>
                             <?php
-                        $conn = @mysqli_connect("localhost","root","","comp3334");
+                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                         if (mysqli_connect_errno()) {
                             die("Failed to connect to MySQL: " . mysqli_connect_error());
                         }
@@ -111,7 +111,7 @@
                         </ul>
                     </div>
                     <?php
-                        $conn = @mysqli_connect("localhost","root","","comp3334");
+                        $conn = @mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
                         if (mysqli_connect_errno()) {
                             die("Failed to connect to MySQL: " . mysqli_connect_error());
                         }
